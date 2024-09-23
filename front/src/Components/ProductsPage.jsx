@@ -7,24 +7,23 @@ import { RiDrinksFill } from "react-icons/ri";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import image6 from '../assets/image-6.jpg'
 
-const ProductsPage = () => {
-    const location = useLocation()
-    const {state} = location
+const ProductsPage = ({name, id}) => {
 
     const [category, setCategory] = useState('all')
     const [found, setFound] = useState(false)
     const [products, setProducts] = useState([])
+    const [filteredProducts, setFilteredProducts] = useState([])
 
     const [cart, setCart] = useState([])
 
     const retriveProducts = () => {
-        axios.post('http://localhost/e-commerce/retrieve_products.php', {name: state.name, id: state.id})
+        axios.post('http://localhost/e-commerce/retrieve_products.php', {name, id})
         .then((res) => (res.data))
         .then((data) => {
             if(data.status == 'OK'){
                 setProducts(data.products)
+                setFilteredProducts(data.products)
                 setFound(data.found)
             }
         })
@@ -53,35 +52,48 @@ const ProductsPage = () => {
                 </div>
                 <div className='w-1/4 flex flex-row-reverse items-center gap-3'>
                     <FaUser size={20} />
-                    <span className='text-lg'>{state && state.name}</span>
+                    <span className='text-lg'>{name}</span>
                 </div>
             </div>
 
             <div className='flex flex-col gap-2'>
                 <div className='w-full flex flex-wrap justify-around px-5 text-lg'>
-                    <button className={`${category == 'all' && 'bg-black text-white'} px-6 rounded-md`} onClick={() => setCategory('all')}>
+                    <button className={`${category == 'all' && 'bg-black text-white'} px-6 rounded-md`} onClick={() => {
+                        setCategory('all')
+                        setFilteredProducts(products)
+                    }}>
                         الكل
                     </button>
-                    <button className={`${category == 'meal' && 'bg-black text-white'} flex items-center gap-1 px-6 rounded-md`} onClick={() => setCategory('meal')}>
+                    <button className={`${category == 'meal' && 'bg-black text-white'} flex items-center gap-1 px-6 rounded-md`} onClick={() => {
+                        setCategory('meal')
+                        setFilteredProducts(products.filter((item) => (item.category == 'meal')))
+                    }}>
                     <PiBowlFoodFill size={20}/>
                     وجبات
                     </button>
-                    <button className={`${category == 'dessert' && 'bg-black text-white'} flex items-center gap-1 px-6 rounded-md`} onClick={() => setCategory('dessert')}>
+                    <button className={`${category == 'dessert' && 'bg-black text-white'} flex items-center gap-1 px-6 rounded-md`} onClick={() => {
+                        setCategory('dessert')
+                        setFilteredProducts(products.filter((item) => (item.category == 'dessert')))
+
+                    }}>
                     <GiCupcake size={20}/>
                     حلويات
                     </button>
-                    <button className={`${category == 'drink' && 'bg-black text-white'} flex items-center gap-1 px-6 rounded-md`} onClick={() => setCategory('drink')}>
+                    <button className={`${category == 'drink' && 'bg-black text-white'} flex items-center gap-1 px-6 rounded-md`} onClick={() => {
+                        setCategory('drink')
+                        setFilteredProducts(products.filter((item) => (item.category == 'drink')))
+                    }}>
                     <RiDrinksFill size={20}/>
                     مشروبات
                     </button>
 
                 </div>
-                <div className='w-full bg-white rounded-t-lg p-8'>
+                <div className='w-full bg-white rounded-t-lg p-8 min-h-[60vh]'>
                     <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 gap-4'>
                         
                         {
-                            products.map((item) => (
-                                <div key={item.id} className='p-2 h-[300px] flex flex-col'>  
+                            found && filteredProducts.map((item) => (
+                                <div key={item.id} className='p-2 h-[300px] flex flex-col gap-2'>  
                                     <div className='w-full h-3/5'>
                                         <img src={`${item.image_path}`} alt="" className='w-full h-full rounded-lg'/>
                                     </div>

@@ -11,20 +11,22 @@ import AddProduct from './Components/AddProduct'
 import AdminDashboard from './Components/AdminDashboard'
 
 function App() {
-
+  
+  const [name, setName] = useState()
+  const [id, setId] = useState()
 
   return (
     <> 
     <Routes>
-      <Route path='/login' element={<Login/>}/>
+      <Route path='/login' element={<Login setName={setName} setId={setId}/>}/>
       <Route path='/signin' element={<Signin/>}/>
       <Route path='' element={<MainPage/>}>
         <Route index element={<Landing/>}/>
-        <Route path='/products' element={<ProductsPage/>}/>
-        <Route path='/seller' element={<SellerDashboard/>}/>
+        <Route path='/products' element={<ProductsPage name={name} id={id}/>}/>
+        <Route path='/seller' element={<SellerDashboard name={name} id={id}/>}/>
         <Route path='/admin' element={<AdminDashboard/>}/>
-        <Route path='/add_product' element={<AddProduct/>}/>
-        <Route path='/cart' element={<Cart/>}/>
+        <Route path='/add_product' element={<AddProduct name={name} id={id}/>}/>
+        <Route path='/cart' element={<Cart name={name} id={id}/>}/>
       </Route>
     </Routes>
     </>

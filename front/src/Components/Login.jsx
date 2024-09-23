@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const Login = () => {
+const Login = ({setName, setId}) => {
     const navigate = useNavigate()
 
     const [role, setRole] = useState('user')
@@ -15,11 +15,13 @@ const Login = () => {
         .then((res) => (res.data))
         .then((data) => {
             if(data.status == 'OK'){
+                setName(data.name)
+                setId(data.id)
                 if(role == 'user'){
-                    navigate('/products', {state : {id: data.id, name: data.name}})
+                    navigate('/products')
                 }
                 else if(role == 'seller'){
-                    navigate('/seller', {state : {id: data.id, name: data.name}})
+                    navigate('/seller')
                 }
                 else if(role == 'admin'){
                     navigate('/admin')
