@@ -15,8 +15,13 @@ const AddProduct = () => {
         file.append('product_name', name)
         file.append('product_description', description)
         file.append('category', category)
-        file.append('file', img)
-        axios.post('http://localhost/e-commerce/add_product.php', file, {withCredentials: true})
+        file.append('image', img)
+        axios.post('http://localhost/e-commerce/add_product.php', file, {
+            headers: {
+              "Content-Type": 'multipart/form-data'
+            }, 
+            withCredentials: true
+        })
         .then((res) => (res.data))
         .then((data) => {
             if(data.status == 'OK'){
