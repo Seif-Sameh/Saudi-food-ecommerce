@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $rtl = "\u{202B}" . $seller_name . "\u{202C}";
             $seller_name = $rtl;
         }
+        $image_path = 'http://localhost/e-commerce/' . $image_path;
         $products[] = array("id" => $id, "name" => $name, "category" => $category, "description" => $description, "image_path" => $image_path, "seller_id" => $seller_id, "seller_name" => $seller_name);
     }
     http_response_code(200);

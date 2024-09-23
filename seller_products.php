@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $rtl = "\u{202B}" . $description . "\u{202C}";
             $description = $rtl;
         }
+        $image_path = 'http://localhost/e-commerce/' . $image_path;
         $products[] = array("id" => $id, "name" => $name, "category" => $category, "description" => $description, "image_path" => $imge_path);
     }
     http_response_code(200);
