@@ -27,7 +27,7 @@ const sellerDashboard = ({ name, id }) => {
       .then((data) => {
         if (data.status == 'OK') {
           setOrdersFound(data.found)
-          setOrders(data.products)
+          setOrders(data.orders)
         }
       })
   }
@@ -87,7 +87,26 @@ const sellerDashboard = ({ name, id }) => {
       <div className='flex justify-between px-10'>
         <p className='text-3xl font-bold'>الطلبات</p>
       </div>
-
+      <div className='w-full bg-white rounded-t-lg p-8  pb-[50px]'>
+      <table className='table-auto w-full'>
+        <thead className='bg-black text-white'>
+          <th className='p-2 text-center'>اسم صاحب الطلب</th>
+          <th className='p-2 text-center'>المنتج </th>
+          <th className='p-2 text-center'>الكمية </th>
+          <th className='p-2 text-center'>الإجمالي </th>
+        </thead>
+        <tbody>
+          {ordersFound && orders.map((item, index) => (
+            <tr key={index} className='bg-gray-100'>
+              <td className='pr-2 py-2 text-center'>{item.customer_name}</td>
+              <td className='py-2 text-center'>{item.product_name}</td>
+              <td className='py-2 text-center'>{item.quantity}</td>
+              <td className='py-2 text-center'>{item.total_price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
     </div>
   )
 }
