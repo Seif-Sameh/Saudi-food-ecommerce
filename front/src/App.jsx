@@ -14,16 +14,18 @@ function App() {
   
   const [name, setName] = useState('')
   const [id, setId] = useState('')
+  const [phone, setPhone] = useState('')
 
   useEffect(() => {
     localStorage.getItem('name') && setName(localStorage.getItem('name'))
     localStorage.getItem('id') && setId(localStorage.getItem('id'))
+    localStorage.getItem('phone') && setPhone(localStorage.getItem('phone'))
   }, [])
 
   return (
     <> 
     <Routes>
-      <Route path='/login' element={<Login setName={setName} setId={setId}/>}/>
+      <Route path='/login' element={<Login setName={setName} setId={setId} setPhone={setPhone}/>}/>
       <Route path='/signin' element={<Signin/>}/>
       <Route path='' element={<MainPage/>}>
         <Route index element={<Landing/>}/>
@@ -31,7 +33,7 @@ function App() {
         <Route path='/seller' element={<SellerDashboard name={name} id={id}/>}/>
         <Route path='/admin' element={<AdminDashboard/>}/>
         <Route path='/add_product' element={<AddProduct name={name} id={id}/>}/>
-        <Route path='/cart' element={<Cart name={name} id={id}/>}/>
+        <Route path='/cart' element={<Cart name={name} id={id} phone={phone}/>}/>
       </Route>
     </Routes>
     </>
