@@ -43,6 +43,7 @@ const ProductsPage = ({ name, id }) => {
                         <div className='flex w-fit items-center gap-2 bg-black text-white px-5 py-1 rounded-md'>
                             <FaCartShopping />
                             <button >السلة</button>
+                            <span>{cart && cart.length != 0 && cart.length }</span>
                         </div>
                     </Link>
                 </div>
