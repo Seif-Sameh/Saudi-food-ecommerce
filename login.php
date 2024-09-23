@@ -2,8 +2,9 @@
 session_start();
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: http://localhost:5173");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Allow-Credentials: true");
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(200);
     exit(0);
@@ -31,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['name'] = $name;
                 $_SESSION['role'] = $role;
                 $_SESSION['phone_number'] = $phone_number;
-                setcookie('PHPSESSID', session_id(), 0, "/", "", true, true);
+                setcookie('PHPSESSID', session_id(), time() + 10713600, "", "", false, false);
                 http_response_code(200);
-                echo json_encode(['status' => 'OK', 'message' => 'Successful login']);
+                echo json_encode(['status' => 'OK', 'message' => 'Successful login', 'id' => $id, 'name' => $name]);
                 $conn->close();
                 exit(0);
             } else {
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conn->close();
             exit(0);
         }
-    } else {
+    } elseif ($table_name == 'admins') {
         $login = $conn->prepare("SELECT admin_id, password FROM $table_name WHERE email=? LIMIT 1");
         $login->bind_param('s', $email);
         $login->execute();

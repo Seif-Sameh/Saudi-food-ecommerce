@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: http://localhost:5173");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Access-Control-Allow-Credentials: true");
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
@@ -41,8 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $product_name = trim($_POST['product_name']);
     $product_description = $_POST['product_description'];
     $image_path = $upload_path;
-    $seller_id = $_SESSION['id'];
-    $seller_name = $_SESSION['name'];
+    $seller_id = $_POST['id'];
+    $seller_name = $_POST['name'];
     include('./connection.php');
     $add_product = $conn->prepare("INSERT INTO products (product_id, category, product_name, product_description, image_path, seller_id,
     seller_name) VALUES (?, ?, ?, ?, ?, ?, ?)");

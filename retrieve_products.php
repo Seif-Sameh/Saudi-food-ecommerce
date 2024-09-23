@@ -9,6 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(200);
     exit(0);
 }
+function is_arabic($text)
+{
+    return preg_match('/\p{Arabic}/u', $text);
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include('./connection.php');
     $get_products = $conn->prepare("SELECT product_id, category, product_name, product_description, image_path, seller_id, seller_name FROM products ORDER BY id DESC");
@@ -24,6 +28,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $get_products->bind_result($id, $category, $name, $description, $image_path, $seller_id, $seller_name);
     $products = [];
     while ($get_products->fetch()) {
+        if (is_arabic($category)) {
+            $rtl = "\u{202B}" . $category . "\u{202C}";
+            $category = $rtl;
+        }
+        if (is_arabic($name)) {
+            $rtl = "\u{202B}" . $name . "\u{202C}";
+            $name = $rtl;
+        }
+        if (is_arabic($description)) {
+            $rtl = "\u{202B}" . $description . "\u{202C}";
+            $description = $rtl;
+        }
+        if (is_arabic($seller_name)) {
+            $rtl = "\u{202B}" . $seller_name . "\u{202C}";
+            $seller_name = $rtl;
+        }
         $products[] = array("id" => $id, "name" => $name, "category" => $category, "description" => $description, "image_path" => $image_path, "seller_id" => $seller_id, "seller_name" => $seller_name);
     }
     http_response_code(200);

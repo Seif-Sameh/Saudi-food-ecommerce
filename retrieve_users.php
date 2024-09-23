@@ -9,6 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(200);
     exit(0);
 }
+function is_arabic($text)
+{
+    return preg_match('/\p{Arabic}/u', $text);
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include('./connection.php');
     $get_users = $conn->prepare("SELECT users_id, name, email, phone_number, status FROM users ORDER BY id");
@@ -24,6 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $get_users->bind_result($id, $name, $email, $phone_number, $status);
     $users = [];
     while ($get_users->fetch()) {
+        if (is_arabic($name)) {
+            $rtl = "\u{202B}" . $name . "\u{202C}";
+            $name = $rtl;
+        }
         $users[] = array("id" => $id, "name" => $name, "email" => $email, "phone_number" => $phone_number, "status" => $status);
     }
     http_response_code(200);

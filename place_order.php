@@ -14,12 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $quantity = $data['quantity'];
     $product_id = $data['product_id'];
     $seller_id = $data['seller_id'];
-    $user_id = $_SESSION['id'];
-    $username = $_SESSION['name'];
-    $product_name = $_SESSION['product_name'];
+    $user_id = $data['id'];
+    $username = $data['name'];
+    $product_name = $data['product_name'];
     include('./connection.php');
     $add_order = $conn->prepare("INSERT INTO orders (user_id, seller_id, product_id, product_name, username, quantity, mobile_phone) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $add_order->bind_param('sssssis', $user_id, $seller_id, $product_id, $product_name, $username, $quantity, $_SESSION['phone_number']);
+    $add_order->bind_param('sssssis', $user_id, $seller_id, $product_id, $product_name, $username, $quantity, $data['phone_number']);
     $add_order->execute();
     http_response_code(200);
     echo json_encode(['status' => 'OK', 'message' => 'order added successfully']);
