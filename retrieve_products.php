@@ -15,7 +15,7 @@ function is_arabic($text)
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include('./connection.php');
-    $get_products = $conn->prepare("SELECT product_id, category, product_name, product_description, image_path, seller_id, seller_name FROM products ORDER BY id DESC");
+    $get_products = $conn->prepare("SELECT product_id, category, product_name, product_description, image_path, seller_id, seller_name, price FROM products ORDER BY id DESC");
     $get_products->execute();
     $get_products->store_result();
     if ($get_products->num_rows == 0) {
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conn->close();
         exit(0);
     }
-    $get_products->bind_result($id, $category, $name, $description, $image_path, $seller_id, $seller_name);
+    $get_products->bind_result($id, $category, $name, $description, $image_path, $seller_id, $seller_name, $price);
     $products = [];
     while ($get_products->fetch()) {
         if (is_arabic($category)) {
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $seller_name = $rtl;
         }
         $image_path = 'http://localhost/e-commerce/' . $image_path;
-        $products[] = array("id" => $id, "name" => $name, "category" => $category, "description" => $description, "image_path" => $image_path, "seller_id" => $seller_id, "seller_name" => $seller_name);
+        $products[] = array("id" => $id, "name" => $name, "category" => $category, "description" => $description, "image_path" => $image_path, "seller_id" => $seller_id, "seller_name" => $seller_name, 'product_price' => $price);
     }
     http_response_code(200);
     echo json_encode(['status' => 'OK', 'found' => true, 'products' => $products]);
