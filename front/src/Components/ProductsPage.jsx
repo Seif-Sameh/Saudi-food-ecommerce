@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa6";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 const ProductsPage = ({ name, id }) => {
 
@@ -104,8 +105,12 @@ const ProductsPage = ({ name, id }) => {
                                             <p className='text-sm line-clamp-2'>{item.description}</p>
                                         </div>
                                         <div className='flex justify-between'>
-                                        <button className='bg-black text-white py-1 px-3 rounded-md w-fit cursor-pointer' onClick={() => setCart((prev) => [...prev, item])}>اضف الي سلتك</button>
-                                        <p className='text-xl font-bold'>{item.description.slice(0, 7)}</p>
+                                        {cart.filter((p) => p.id == item.id).length != 0 ? (
+                                            <FaRegCircleCheck size={25}/>
+                                        ) : (
+                                            <button className='bg-black text-white py-1 px-3 rounded-md w-fit cursor-pointer' onClick={() => setCart((prev) => [...prev, item])}>اضف الي سلتك</button>
+                                        )}
+                                        <p className='text-xl font-bold'>SAR {item.product_price} </p>
                                         </div>
                                     </div>
                                 </div>
