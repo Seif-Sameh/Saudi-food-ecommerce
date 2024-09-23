@@ -5,7 +5,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { Link, useLocation } from 'react-router-dom';
 import { GoTrash } from "react-icons/go";
 
-const Cart = () => {
+const Cart = ({name, id}) => {
 
     const location = useLocation()
     const { state } = location
@@ -34,7 +34,7 @@ const Cart = () => {
                 </div>
                 <div className='w-1/4 flex flex-row-reverse items-center gap-3'>
                     <FaUser size={20} />
-                    <span className='text-lg'>name</span>
+                    <span className='text-lg'>{name}</span>
                 </div>
             </div>
 

@@ -31,7 +31,7 @@ const ProductsPage = ({ name, id }) => {
 
     useEffect(() => {
         retriveProducts()
-        setCart(state.cart_items)
+        state && setCart(state.cart_items)
     }, [])
 
     return (
@@ -101,7 +101,7 @@ const ProductsPage = ({ name, id }) => {
                                     <div className='w-full h-2/5 flex flex-col justify-between px-2 gap-4'>
                                         <div className='flex flex-col gap-4'>
                                             <p className='text-xl font-semibold'>{item.name}</p>
-                                            <p className='text-sm line-clamp-2'>{item.description.slice(7, )}</p>
+                                            <p className='text-sm line-clamp-2'>{item.description}</p>
                                         </div>
                                         <div className='flex justify-between'>
                                         <button className='bg-black text-white py-1 px-3 rounded-md w-fit cursor-pointer' onClick={() => setCart((prev) => [...prev, item])}>اضف الي سلتك</button>
