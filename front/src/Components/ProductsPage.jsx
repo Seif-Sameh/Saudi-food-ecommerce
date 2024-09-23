@@ -83,7 +83,7 @@ const ProductsPage = () => {
                             products.map((item) => (
                                 <div key={item.id} className='p-2 h-[300px] flex flex-col'>  
                                     <div className='w-full h-3/5'>
-                                        <img src={image6} alt="" className='w-full h-full rounded-lg'/>
+                                        <img src={`${item.image_path}`} alt="" className='w-full h-full rounded-lg'/>
                                     </div>
                                     <div className='w-full h-2/5 flex flex-col justify-between '>
                                     <div className='flex flex-col gap-1'>
