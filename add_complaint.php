@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $complaint = trim($data['complaint']);
     include('./connection.php');
     $add_complaint = $conn->prepare("INSERT INTO complaints (user_id, user_name, complaint) VALUES (?, ?, ?)");
-    $add_complaint->bind_param('sss', $_SESSION['id'], $_SESSION['name'], $complaint);
+    $add_complaint->bind_param('sss', $data['id'], $data['name'], $complaint);
     $add_complaint->execute();
     http_response_code(200);
     echo json_encode(['status' => 'OK', 'message' => 'complaint added successfully']);
