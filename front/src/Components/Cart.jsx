@@ -21,6 +21,18 @@ const Cart = ({ name, id }) => {
     console.log(checkoutItems)
 
 
+    const order = () => {
+        axios.post('http://localhost/e-commerce/place_order.php', { name, id, order: checkoutItems })
+            .then((res) => (res.data))
+            .then((data) => {
+                if (data.status == 'OK') {
+                    setProducts(data.products)
+                    setFilteredProducts(data.products)
+                    setFound(data.found)
+                }
+            })
+    }
+
     return (
         <div className='w-full flex flex-col  gap-14 pt-[50px]'>
             <div className='w-full px-10 flex justify-between items-center'>
