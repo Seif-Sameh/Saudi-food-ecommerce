@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
+
 const AddProduct = () => {
 
     const [name, setName] = useState('')
@@ -9,9 +10,13 @@ const AddProduct = () => {
     const [img, setImg] = useState(null)
 
     const navigate = useNavigate()
+    const location = useLocation()
+    const {state} = location
 
     const addProduct = () => {
         const file = new FormData()
+        file.append('name', state.name)
+        file.append('id', state.id)
         file.append('product_name', name)
         file.append('product_description', description)
         file.append('category', category)
