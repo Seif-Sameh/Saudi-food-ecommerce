@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2024 at 11:27 AM
+-- Generation Time: Sep 23, 2024 at 05:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -67,6 +67,7 @@ CREATE TABLE `orders` (
   `seller_id` varchar(255) NOT NULL,
   `product_id` varchar(255) NOT NULL,
   `product_name` varchar(50) NOT NULL,
+  `total_price` float NOT NULL,
   `username` varchar(255) NOT NULL,
   `mobile_phone` varchar(20) NOT NULL,
   `quantity` int(2) NOT NULL,
@@ -85,6 +86,7 @@ CREATE TABLE `products` (
   `category` varchar(50) NOT NULL,
   `product_name` varchar(50) NOT NULL,
   `product_description` text NOT NULL,
+  `price` varchar(15) NOT NULL,
   `image_path` varchar(255) NOT NULL,
   `seller_id` varchar(255) NOT NULL,
   `seller_name` varchar(255) NOT NULL
@@ -94,19 +96,19 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `product_id`, `category`, `product_name`, `product_description`, `image_path`, `seller_id`, `seller_name`) VALUES
-(4, 'product_66f12b05188839.03593103', 'meal', 'المنسف', '10SAR\nلذيذ ', 'uploads/img_66f12b05187ba.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(5, 'product_66f12cbf57f973.80406411', 'meal', 'المكبوس', '20 SAR\nلذيذ', 'uploads/img_66f12cbf57f13.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(6, 'product_66f12cd5b2ec64.33521249', 'meal', 'المفطح', '15 SAR\nلذيذ جدا', 'uploads/img_66f12cd5b2deb.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(7, 'product_66f12ced633816.95807035', 'meal', 'المطازيز', '20 SAR\nجدا شهية', 'uploads/img_66f12ced632ef.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(8, 'product_66f12d018acd14.36120960', 'meal', 'الكبسة', '30 SAR\nفي جلبك', 'uploads/img_66f12d018ac2a.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(9, 'product_66f12d1901c265.27944649', 'meal', 'القوزي', '50 SAR\nطعم جبار', 'uploads/img_66f12d1901b88.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(10, 'product_66f12d37396cd9.90494899', 'meal', 'الأرز الحساوي', '40 SAR\nيكتسح أنواع الأرز جميعهم', 'uploads/img_66f12d373962d.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(11, 'product_66f12e96e7cc88.27371500', 'dessert', 'الكليجة', '9 SAR\nأحلى من العسل', 'uploads/img_66f12e96e7bee.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(12, 'product_66f12ebb4698d0.61921618', 'dessert', 'اللقيمات', '12 SAR\nلذيذة جدا', 'uploads/img_66f12ebb468ca.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(13, 'product_66f12ee42a5436.21927999', 'dessert', 'العصيدة', '24 SAR\nحلوى من التراث الأصيل', 'uploads/img_66f12ee42a4b0.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(14, 'product_66f12f1a3a6f76.13417031', 'dessert', 'الحنيني', '60 SAR\nمن اشهى الاطباق السعودية تتميز بمذاقها الرائع ، و سهولة تحضيرها . و هي مشهورة من الاكلات السعودية في رمضان ', 'uploads/img_66f12f1a3a634.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
-(15, 'product_66f12fb3b80456.50883074', 'drink', 'القهوة العربية', '7 SAR\nأفضل مذاق وأجود أنواع البن. إنها القهوة العربية السعودية', 'uploads/img_66f12fb3b7fc3.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy');
+INSERT INTO `products` (`id`, `product_id`, `category`, `product_name`, `product_description`, `price`, `image_path`, `seller_id`, `seller_name`) VALUES
+(4, 'product_66f12b05188839.03593103', 'meal', 'المنسف', 'لذيذ ', '10', 'uploads/img_66f12b05187ba.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(5, 'product_66f12cbf57f973.80406411', 'meal', 'المكبوس', 'لذيذ', '20', 'uploads/img_66f12cbf57f13.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(6, 'product_66f12cd5b2ec64.33521249', 'meal', 'المفطح', 'لذيذ جدا', '15 ', 'uploads/img_66f12cd5b2deb.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(7, 'product_66f12ced633816.95807035', 'meal', 'المطازيز', 'جدا شهية', '20', 'uploads/img_66f12ced632ef.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(8, 'product_66f12d018acd14.36120960', 'meal', 'الكبسة', 'في جلبك', '30 ', 'uploads/img_66f12d018ac2a.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(9, 'product_66f12d1901c265.27944649', 'meal', 'القوزي', 'طعم جبار', '50', 'uploads/img_66f12d1901b88.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(10, 'product_66f12d37396cd9.90494899', 'meal', 'الأرز الحساوي', 'يكتسح أنواع الأرز جميعهم', '40 ', 'uploads/img_66f12d373962d.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(11, 'product_66f12e96e7cc88.27371500', 'dessert', 'الكليجة', 'أحلى من العسل', '9 ', 'uploads/img_66f12e96e7bee.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(12, 'product_66f12ebb4698d0.61921618', 'dessert', 'اللقيمات', 'لذيذة جدا', '12 ', 'uploads/img_66f12ebb468ca.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(13, 'product_66f12ee42a5436.21927999', 'dessert', 'العصيدة', 'حلوى من التراث الأصيل', '24 ', 'uploads/img_66f12ee42a4b0.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(14, 'product_66f12f1a3a6f76.13417031', 'dessert', 'الحنيني', 'من اشهى الاطباق السعودية تتميز بمذاقها الرائع ، و سهولة تحضيرها . و هي مشهورة من الاكلات السعودية في رمضان ', '60 ', 'uploads/img_66f12f1a3a634.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(15, 'product_66f12fb3b80456.50883074', 'drink', 'القهوة العربية', 'أفضل مذاق وأجود أنواع البن. إنها القهوة العربية السعودية', '7 ', 'uploads/img_66f12fb3b7fc3.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy');
 
 -- --------------------------------------------------------
 
