@@ -107,6 +107,7 @@ const ProductsPage = ({ name, id }) => {
                                         <div className='flex flex-col gap-4'>
                                             <p className='text-xl font-semibold'>{item.name}</p>
                                             <p className='text-sm line-clamp-2'>{item.description}</p>
+                                            <p className='text-sm line-clamp-2 text-gray-600'>البائع: {item.seller_name}</p>
                                         </div>
                                         <div className='flex justify-between'>
                                         {cart.filter((p) => p.id == item.id).length != 0 ? (
