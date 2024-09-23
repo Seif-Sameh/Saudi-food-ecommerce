@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2024 at 10:41 PM
+-- Generation Time: Sep 23, 2024 at 11:02 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -69,7 +69,7 @@ CREATE TABLE `orders` (
   `product_name` varchar(50) NOT NULL,
   `total_price` float NOT NULL,
   `username` varchar(255) NOT NULL,
-  `phone number` int(20) NOT NULL,
+  `phone_number` int(20) NOT NULL,
   `quantity` int(2) NOT NULL,
   `ordered_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
