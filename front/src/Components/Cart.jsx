@@ -15,7 +15,7 @@ const Cart = ({ name, id }) => {
 
     useEffect(() => {
         setCartItems(state.cart_items)
-        setCheckoutItems(state.cart_items.map((item) => ({ ...item, quantity: 1 })))
+        setCheckoutItems(state.cart_items.map((item) => ({ product_name: item.name, product_id: item.id, product_price: item.product_price, seller_id: item.seller_id, quantity: 1 })))
     }, [])
 
     console.log(cartItems)
@@ -70,8 +70,8 @@ const Cart = ({ name, id }) => {
                             {
                                 checkoutItems && checkoutItems.map((item) =>
                                 (
-                                    <div key={item.id} className='w-full flex justify-between items-center'>
-                                        <p><span>x{item.quantity}</span> <span>{item.name}</span></p>
+                                    <div key={item.prodcut_id} className='w-full flex justify-between items-center'>
+                                        <p><span>x{item.quantity}</span> <span>{item.product_name}</span></p>
                                         <p className='font-semibold'><span>{item.quantity * item.product_price} SAR</span></p>
                                     </div>
                                 ))
@@ -114,8 +114,8 @@ const Cart = ({ name, id }) => {
                                                 <span>العدد</span>
                                                 <input type="number" name="" id="" min={1} defaultValue={1} className='w-[50px] bg-gray-300 py-1 px-2 rounded-md'
                                                     onChange={(e) => {
-                                                        setCheckoutItems((prev) => prev.filter((p) => p.id != item.id))
-                                                        setCheckoutItems((prev) => [...prev, { ...item, quantity: e.target.value }])
+                                                        setCheckoutItems((prev) => prev.filter((p) => p.product_id != item.id))
+                                                        setCheckoutItems((prev) => [...prev, {product_name: item.name, product_id: item.id, product_price: item.product_price, seller_id: item.seller_id, quantity: e.target.value }])
                                                     }}
                                                 />
                                             </div>
@@ -123,7 +123,7 @@ const Cart = ({ name, id }) => {
                                         <div className='h-full text-sm flex flex-col justify-between'>
                                             <div className='flex items-center gap-1 cursor-pointer' onClick={() => {
                                                 setCartItems((prev) => prev.filter((p) => p.id != item.id))
-                                                setCheckoutItems((prev) => prev.filter((p) => p.id != item.id))
+                                                setCheckoutItems((prev) => prev.filter((p) => p.product_id != item.id))
                                             }}>
                                                 <GoTrash />
                                                 <span>حذف</span>
