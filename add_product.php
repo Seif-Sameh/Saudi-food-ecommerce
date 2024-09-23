@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $allowed = ['jpg', 'jpeg', 'png', 'gif'];
-    $file_name = $_FILES['image']['name'];
-    $file_tmp = $_FILES['image']['tmp_name'];
-    $file_type = $_FILES['image']['type'];
+    $file_name = $_FILES['file']['name'];
+    $file_tmp = $_FILES['file']['tmp_name'];
+    $file_type = $_FILES['file']['type'];
     $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
     if (in_array($file_ext, $allowed)) {
