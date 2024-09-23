@@ -10,6 +10,16 @@ import { Link } from 'react-router-dom';
 const ProductsPage = () => {
     const [category, setCategory] = useState('all')
 
+    const retriveProducts = () => {
+        axios.post('http://localhost/e-commerce/user_signup.php', {name, email, password, phone_number: phone, })
+        .then((res) => (res.data))
+        .then((data) => {
+            if(data.status == 'OK'){
+                navigate('/products')
+            }
+        })
+    }
+
     return (
         <div className='w-full flex flex-col  gap-14 pt-[50px]'>
             <div className='w-full px-10 flex justify-between items-center'>
@@ -54,7 +64,18 @@ const ProductsPage = () => {
                 </div>
                 <div className='w-full bg-white rounded-t-lg p-8'>
                     <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 gap-4'>
-
+                        <div className='p-2 h-[300px] flex flex-col'>  
+                            <div className='w-full h-3/5'>
+                                <img src="" alt="" className='w-full h-full rounded-lg'/>
+                            </div>
+                            <div className='w-full h-2/5 flex flex-col justify-between '>
+                            <div className='flex flex-col gap-1'>
+                                <p className='text-lg font-semibold'>name</p>
+                                <p className='text-sm '>description</p>
+                            </div>
+                                <button className='bg-black text-white py-1 px-3 rounded-md w-fit cursor-pointer'>اضف الي سلتك</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
