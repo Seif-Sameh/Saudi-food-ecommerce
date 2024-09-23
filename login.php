@@ -1,5 +1,4 @@
 <?php
-session_start();
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
@@ -27,14 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $login->fetch();
             $login->close();
             if (password_verify($password, $hashed_password)) {
-                session_regenerate_id(true);
-                $_SESSION['id'] = $id;
-                $_SESSION['name'] = $name;
-                $_SESSION['role'] = $role;
-                $_SESSION['phone_number'] = $phone_number;
-                setcookie('PHPSESSID', session_id(), time() + 10713600, "", "", false, false);
                 http_response_code(200);
-                echo json_encode(['status' => 'OK', 'message' => 'Successful login', 'id' => $id, 'name' => $name]);
+                echo json_encode(['status' => 'OK', 'message' => 'Successful login', 'id' => $id, 'name' => $name, 'phone_number' => $phone_number]);
                 $conn->close();
                 exit(0);
             } else {
