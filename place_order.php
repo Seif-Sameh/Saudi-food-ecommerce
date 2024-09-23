@@ -10,17 +10,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit(0);
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $datadic = json_decode(file_get_contents('php://input'), true);
+    $data_all = json_decode(file_get_contents('php://input'), true);
+    $user_id = $data_all['id'];
+    $username = $data_all['name'];
+    $datadic = $data_all['order'];
+    include('./connection.php');
     foreach ($datadic as $data) {
         $quantity = $data['quantity'];
         $product_id = $data['product_id'];
         $seller_id = $data['seller_id'];
-        $user_id = $data['id'];
-        $username = $data['name'];
         $product_name = $data['product_name'];
         $price = $data['product_price'];
         $total_price = $price * $quantity;
-        include('./connection.php');
         $add_order = $conn->prepare("INSERT INTO orders (user_id, seller_id, product_id, product_name, username, quantity, mobile_phone, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         $add_order->bind_param('sssssisd', $user_id, $seller_id, $product_id, $product_name, $username, $quantity, $data['phone_number'], $total_price);
         $add_order->execute();
