@@ -22,7 +22,7 @@ const Cart = ({ name, id, phone }) => {
     const navigate = useNavigate()
 
     const order = () => {
-        axios.post('http://localhost/e-commerce/place_order.php', { name: name, id: id, order: checkoutItems })
+        axios.post('http://localhost/e-commerce/place_order.php', { name: name, id: id, phone_number: phone, order: checkoutItems })
             .then((res) => (res.data))
             .then((data) => {
                 if (data.status == 'OK') {

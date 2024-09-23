@@ -92,6 +92,7 @@ const sellerDashboard = ({ name, id }) => {
         <thead className='bg-black text-white'>
           <tr>
           <th className='p-2 text-center'>اسم صاحب الطلب</th>
+          <th className='p-2 text-center'>رقم الهاتف</th>
           <th className='p-2 text-center'>المنتج </th>
           <th className='p-2 text-center'>الكمية </th>
           <th className='p-2 text-center'>الإجمالي </th>
@@ -101,6 +102,7 @@ const sellerDashboard = ({ name, id }) => {
           {ordersFound && orders.map((item, index) => (
             <tr key={index} className='bg-gray-100'>
               <td className='pr-2 py-2 text-center'>{item.customer_name}</td>
+              <td className='pr-2 py-2 text-center'>{item.phone_number}</td>
               <td className='py-2 text-center'>{item.product_name}</td>
               <td className='py-2 text-center'>{item.quantity}</td>
               <td className='py-2 text-center'>{item.total_price}</td>

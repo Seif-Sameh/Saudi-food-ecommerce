@@ -17,10 +17,11 @@ const Login = ({setName, setId, setPhone}) => {
             if(data.status == 'OK'){
                 setName(data.name)
                 setId(data.id)
+                setPhone(data.phone_number)
                 localStorage.clear()
                 localStorage.setItem('name', data.name)
                 localStorage.setItem('id', data.id)
-                localStorage.setItem('phone', data.phone)
+                localStorage.setItem('phone', data.phone_number)
                 if(role == 'user'){
                     navigate('/products')
                 }
