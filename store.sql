@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2024 at 07:53 AM
+-- Generation Time: Sep 23, 2024 at 11:09 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,6 +33,13 @@ CREATE TABLE `admins` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `admin_id`, `email`, `password`) VALUES
+(1, 'admin66f127bf4dae95.10026649', 'admin@ksa.com', '$2y$10$HjUfg0dcKA76lvrUUrqD2.wMjS0xbfFHia4ATqdd0z7r1KRHTN93C');
 
 -- --------------------------------------------------------
 
@@ -88,7 +95,18 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `product_id`, `category`, `product_name`, `product_description`, `image_path`, `seller_id`, `seller_name`) VALUES
-(1, 'product_66f0e9a205bc65.59329338', 'طيزكسيبنسميمنلبتس ممبمتمسينتب  منلتلمينلاختبيل  لع', 'كبسة', 'مندي', 'uploads/img_66f0e9a205af9.png', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy');
+(4, 'product_66f12b05188839.03593103', 'meal', 'المنسف', 'لذيذ', 'uploads/img_66f12b05187ba.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(5, 'product_66f12cbf57f973.80406411', 'meal', 'المكبوس', 'لذيذ', 'uploads/img_66f12cbf57f13.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(6, 'product_66f12cd5b2ec64.33521249', 'meal', 'المفطح', 'لذيذ جدا', 'uploads/img_66f12cd5b2deb.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(7, 'product_66f12ced633816.95807035', 'meal', 'المطازيز', 'جدا شهية', 'uploads/img_66f12ced632ef.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(8, 'product_66f12d018acd14.36120960', 'meal', 'الكبسة', 'في جلبك', 'uploads/img_66f12d018ac2a.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(9, 'product_66f12d1901c265.27944649', 'meal', 'القوزي', 'طعم جبار', 'uploads/img_66f12d1901b88.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(10, 'product_66f12d37396cd9.90494899', 'meal', 'الأرز الحساوي', 'يكتسح أنواع الأرز جميعهم', 'uploads/img_66f12d373962d.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(11, 'product_66f12e96e7cc88.27371500', 'dessert', 'الكليجة', 'أحلى من العسل', 'uploads/img_66f12e96e7bee.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(12, 'product_66f12ebb4698d0.61921618', 'dessert', 'اللقيمات', 'لذيذة جدا', 'uploads/img_66f12ebb468ca.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(13, 'product_66f12ee42a5436.21927999', 'dessert', 'العصيدة', 'حلوى من التراث الأصيل', 'uploads/img_66f12ee42a4b0.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(14, 'product_66f12f1a3a6f76.13417031', 'dessert', 'الحنيني', 'من اشهى الاطباق السعودية تتميز بمذاقها الرائع ، و سهولة تحضيرها . و هي مشهورة من الاكلات السعودية في رمضان ', 'uploads/img_66f12f1a3a634.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy'),
+(15, 'product_66f12fb3b80456.50883074', 'drink', 'القهوة العربية', 'أفضل مذاق وأجود أنواع البن. إنها القهوة العربية السعودية', 'uploads/img_66f12fb3b7fc3.jpg', 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy');
 
 -- --------------------------------------------------------
 
@@ -112,7 +130,8 @@ CREATE TABLE `sellers` (
 --
 
 INSERT INTO `sellers` (`id`, `sellers_id`, `name`, `email`, `password`, `status`, `phone_number`, `reference_number`) VALUES
-(3, 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy', 'yomu611@gmail.com', '$2y$10$bqwv2RbRZWSO7dBstlikNeOJf56.FEgTKegJM2s9hCDy7QukIR60W', 'active', '1061953831', '356sd5f465fd6sd65f4s6f54s6f54');
+(3, 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy', 'yomu611@gmail.com', '$2y$10$bqwv2RbRZWSO7dBstlikNeOJf56.FEgTKegJM2s9hCDy7QukIR60W', 'active', '1061953831', '356sd5f465fd6sd65f4s6f54s6f54'),
+(6, 'seller66f1138eaa8260.33648245', 'Yougad', 'yougad@thm.com', '$2y$10$Z4Xab47a5Nvp.gmGPsz3F.scC89STfzo8lm1LelFG8DM9AcfpXc1C', 'active', '1131321', '1231231321');
 
 -- --------------------------------------------------------
 
@@ -193,7 +212,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `complaints`
@@ -211,19 +230,19 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `sellers`
 --
 ALTER TABLE `sellers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
