@@ -8,7 +8,7 @@ const sellerDashboard = () => {
   const {state} = location
 
   const retriveProducts = () => {
-    axios.post('http://localhost/e-commerce/seller_products.php', { }, {withCredentials: true} )
+    axios.post('http://localhost/e-commerce/seller_products.php', {name: state.name, id: state.id }, {withCredentials: true} )
     .then((res) => (res.data))
     .then((data) => {
         if(data.status == 'OK'){

@@ -20,7 +20,7 @@ const ProductsPage = () => {
     const [cart, setCart] = useState([])
 
     const retriveProducts = () => {
-        axios.post('http://localhost/e-commerce/retrieve_products.php', { }, {withCredentials: true} )
+        axios.post('http://localhost/e-commerce/retrieve_products.php', {name: state.name, id: state.id})
         .then((res) => (res.data))
         .then((data) => {
             if(data.status == 'OK'){
@@ -90,12 +90,11 @@ const ProductsPage = () => {
                                         <p className='text-lg font-semibold'>{item.name}</p>
                                         <p className='text-sm '>{item.description}</p>
                                     </div>
-                                        <button className='bg-black text-white py-1 px-3 rounded-md w-fit cursor-pointer'>اضف الي سلتك</button>
+                                        <button className='bg-black text-white py-1 px-3 rounded-md w-fit cursor-pointer' onClick={()=> setCart((prev) => [...prev, item])}>اضف الي سلتك</button>
                                     </div>
                                 </div>
                             ))
                         }
-
                     </div>
                 </div>
             </div>
