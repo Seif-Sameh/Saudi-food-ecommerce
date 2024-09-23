@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2024 at 06:12 AM
+-- Generation Time: Sep 23, 2024 at 06:59 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -45,7 +45,7 @@ CREATE TABLE `complaints` (
   `user_id` varchar(255) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `complaint` text NOT NULL,
-  `submitted_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `submitted_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -53,7 +53,25 @@ CREATE TABLE `complaints` (
 --
 
 INSERT INTO `complaints` (`id`, `user_id`, `user_name`, `complaint`, `submitted_at`) VALUES
-(1, 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy', 'هلا يا رمانة هلا يا رمانة الحلوة زعلانة، الحلوة زعلانة', '2024-09-23 04:10:10');
+(1, 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy', 'هلا يا رمانة هلا يا رمانة الحلوة زعلانة، الحلوة زعلانة', '2024-09-23 07:10:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
+  `seller_id` varchar(255) NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `product_name` varchar(50) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `mobile_phone` varchar(20) NOT NULL,
+  `quantity` int(2) NOT NULL,
+  `ordered_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -144,6 +162,15 @@ ALTER TABLE `complaints`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `seller_id` (`seller_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -180,6 +207,12 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `complaints`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`

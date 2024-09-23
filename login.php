@@ -17,12 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include('connection.php');
     if ($table_name == 'sellers' or $table_name == 'users') {
         $target_id = $table_name . '_id';
-        $login = $conn->prepare("SELECT $target_id, name, password FROM $table_name WHERE email=? and status='active' LIMIT 1");
+        $login = $conn->prepare("SELECT $target_id, name, password, phone_number FROM $table_name WHERE email=? and status='active' LIMIT 1");
         $login->bind_param('s', $email);
         $login->execute();
         $login->store_result();
         if ($login->num_rows > 0) {
-            $login->bind_result($id, $name, $hashed_password);
+            $login->bind_result($id, $name, $hashed_password, $phone_number);
             $login->fetch();
             $login->close();
             if (password_verify($password, $hashed_password)) {
@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['id'] = $id;
                 $_SESSION['name'] = $name;
                 $_SESSION['role'] = $role;
+                $_SESSION['phone_number'] = $phone_number;
                 setcookie('PHPSESSID', session_id(), 0, "/", "", true, true);
                 http_response_code(200);
                 echo json_encode(['status' => 'OK', 'message' => 'Successful login']);

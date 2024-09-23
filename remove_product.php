@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
-    $seller_id = $data['seller_id'];
+    $product_id = $data['product_id'];
     include('./connection.php');
-    $remove_seller = $conn->prepare("DELETE FROM sellers WHERE sellers_id=?");
-    $remove_seller->bind_param('s', $seller_id);
+    $remove_seller = $conn->prepare("DELETE FROM products WHERE product_id=?");
+    $remove_seller->bind_param('s', $product_id);
     $remove_seller->execute();
     http_response_code(200);
     echo json_encode(['status' => 'OK', 'message' => 'removed successfully']);

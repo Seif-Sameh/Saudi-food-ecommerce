@@ -11,24 +11,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include('./connection.php');
-    $get_users = $conn->prepare("SELECT users_id, name, email, phone_number, status FROM users ORDER BY id");
-    $get_users->execute();
-    $get_users->store_result();
-    if ($get_users->num_rows == 0) {
+    $get_orders = $conn->prepare("SELECT username, product_name, mobile_phone, quantity, ordered_at FROM orders WHERE seller_id = ? ORDER BY id DESC");
+    $get_orders->execute();
+    $get_orders->store_result();
+    if ($get_orders->num_rows == 0) {
         http_response_code(200);
         echo json_encode(['status' => 'OK', 'found' => false]);
-        $get_users->close();
+        $get_orders->close();
         $conn->close();
         exit(0);
     }
-    $get_users->bind_result($id, $name, $email, $phone_number, $status);
-    $users = [];
-    while ($get_users->fetch()) {
-        $users[] = array("id" => $id, "name" => $name, "email" => $email, "phone_number" => $phone_number, "status" => $status);
+    $get_orders->bind_result($username, $product_name, $phone_number, $quantity, $ordered_at);
+    $orders = [];
+    while ($get_orders->fetch()) {
+        $orders[] = array("customer_name" => $username, "product_name" => $product_name, "phone_number" => $phone_number, "quantity" => $quantity, "ordered_at" => $ordered_at);
     }
     http_response_code(200);
-    echo json_encode(['status' => 'OK', 'found' => true, 'users' => $users]);
-    $get_users->close();
+    echo json_encode(['status' => 'OK', 'found' => true, 'orders' => $orders]);
+    $get_orders->close();
     $conn->close();
     exit(0);
 } else {
