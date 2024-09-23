@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from './Components/Login'
 import Signin from './Components/Signin'
@@ -14,6 +14,11 @@ function App() {
   
   const [name, setName] = useState()
   const [id, setId] = useState()
+
+  useEffect(() => {
+    localStorage.getItem('name') && setName(localStorage.getItem('name'))
+    localStorage.getItem('id') && setId(localStorage.getItem('id'))
+  }, [])
 
   return (
     <> 

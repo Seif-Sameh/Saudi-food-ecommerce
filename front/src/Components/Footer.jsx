@@ -8,7 +8,12 @@ import { IoMail } from "react-icons/io5";
 
 const Footer = () => {
     return (
-        <div className='w-full  px-[50px] py-[40px] bg-black text-white text-lg flex sm:justify-between max-sm:flex-col gap-8'>
+        
+        <div className='w-full  px-[50px] py-[40px] bg-black text-white text-lg flex flex-col'>
+            <div className=''>
+
+            </div>
+            <div className='w-full flex sm:justify-between max-sm:flex-col gap-8'>
             <div className='flex flex-col justify-between'>
                 <div className='flex flex-col gap-3'>
                     <FaShippingFast size={35} />
@@ -35,6 +40,7 @@ const Footer = () => {
                         <p>example@gmail.com</p>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     )

@@ -17,6 +17,8 @@ const Login = ({setName, setId}) => {
             if(data.status == 'OK'){
                 setName(data.name)
                 setId(data.id)
+                localStorage.setItem('name', data.name)
+                localStorage.setItem('id', data.id)
                 if(role == 'user'){
                     navigate('/products')
                 }
