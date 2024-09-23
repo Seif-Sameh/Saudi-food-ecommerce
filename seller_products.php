@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $conn->close();
         exit(0);
     }
-    $get_products->bind_result($id, $category, $name, $description, $imge_path, $price);
+    $get_products->bind_result($id, $category, $name, $description, $image_path, $price);
     $products = [];
     while ($get_products->fetch()) {
         if (is_arabic($name)) {
