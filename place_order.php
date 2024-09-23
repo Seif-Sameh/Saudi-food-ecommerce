@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $price = $data['product_price'];
         $total_price = $price * $quantity;
         $add_order = $conn->prepare("INSERT INTO orders (user_id, seller_id, product_id, product_name, username, quantity, total_price, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $add_order->bind_param('sssssidi', $user_id, $seller_id, $product_id, $product_name, $username, $quantity, $total_price, $data_all['phone_number']);
+        $add_order->bind_param('sssssids', $user_id, $seller_id, $product_id, $product_name, $username, $quantity, $total_price, $data_all['phone_number']);
         $add_order->execute();
     }
     http_response_code(200);
