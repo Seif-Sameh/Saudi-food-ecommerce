@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include('./connection.php');
     $data = json_decode(file_get_contents('php://input'), true);
     $get_products = $conn->prepare("SELECT product_id, category, product_name, product_description, image_path, price FROM products WHERE seller_id=? ORDER BY id DESC");
-    $get_products->bind_param('s', $_POST['id']);
+    $get_products->bind_param('s', $data['id']);
     $get_products->execute();
     $get_products->store_result();
     if ($get_products->num_rows == 0) {
