@@ -57,7 +57,7 @@ const ProductsPage = ({name, id}) => {
             </div>
 
             <div className='flex flex-col gap-2'>
-                <div className='w-full flex flex-wrap justify-around px-5 text-lg'>
+                {/* <div className='w-full flex flex-wrap justify-around px-5 text-lg'>
                     <button className={`${category == 'all' && 'bg-black text-white'} px-6 rounded-md`} onClick={() => {
                         setCategory('all')
                         setFilteredProducts(products)
@@ -87,7 +87,7 @@ const ProductsPage = ({name, id}) => {
                     مشروبات
                     </button>
 
-                </div>
+                </div> */}
                 <div className='w-full bg-white rounded-t-lg p-8 min-h-[60vh]'>
                     <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 gap-4'>
                         
@@ -100,7 +100,7 @@ const ProductsPage = ({name, id}) => {
                                     <div className='w-full h-2/5 flex flex-col justify-between '>
                                     <div className='flex flex-col gap-1'>
                                         <p className='text-lg font-semibold'>{item.name}</p>
-                                        <p className='text-sm '>{item.description}</p>
+                                        <p className='text-sm line-clamp-2'>{item.description}</p>
                                     </div>
                                         <button className='bg-black text-white py-1 px-3 rounded-md w-fit cursor-pointer' onClick={()=> setCart((prev) => [...prev, item])}>اضف الي سلتك</button>
                                     </div>
