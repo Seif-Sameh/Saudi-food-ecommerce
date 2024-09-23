@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2024 at 06:59 AM
+-- Generation Time: Sep 23, 2024 at 07:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,18 +42,11 @@ CREATE TABLE `admins` (
 
 CREATE TABLE `complaints` (
   `id` int(11) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
   `user_name` varchar(255) NOT NULL,
+  `user_id` varchar(255) NOT NULL,
   `complaint` text NOT NULL,
   `submitted_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `complaints`
---
-
-INSERT INTO `complaints` (`id`, `user_id`, `user_name`, `complaint`, `submitted_at`) VALUES
-(1, 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy', 'هلا يا رمانة هلا يا رمانة الحلوة زعلانة، الحلوة زعلانة', '2024-09-23 07:10:10');
 
 -- --------------------------------------------------------
 
@@ -231,6 +224,30 @@ ALTER TABLE `sellers`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `complaints`
+--
+ALTER TABLE `complaints`
+  ADD CONSTRAINT `complaints_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`users_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`users_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`seller_id`) REFERENCES `sellers` (`sellers_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`seller_id`) REFERENCES `sellers` (`sellers_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
