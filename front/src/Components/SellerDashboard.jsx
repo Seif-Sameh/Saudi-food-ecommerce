@@ -32,7 +32,7 @@ const sellerDashboard = ({ name, id }) => {
           </button>
         </Link>
       </div>
-      <div className='w-full bg-white rounded-t-lg p-8 min-h-[60vh]'>
+      <div className='w-full bg-white rounded-t-lg p-8 min-h-[60vh] pb-[50px]'>
         <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 gap-4'>
           {
             found && products.map((item) => (
