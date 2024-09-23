@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2024 at 10:31 PM
+-- Generation Time: Sep 23, 2024 at 10:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -132,8 +132,7 @@ CREATE TABLE `sellers` (
 --
 
 INSERT INTO `sellers` (`id`, `sellers_id`, `name`, `email`, `password`, `status`, `phone_number`, `reference_number`) VALUES
-(3, 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy', 'yomu611@gmail.com', '$2y$10$bqwv2RbRZWSO7dBstlikNeOJf56.FEgTKegJM2s9hCDy7QukIR60W', 'active', '1061953831', '356sd5f465fd6sd65f4s6f54s6f54'),
-(6, 'seller66f1138eaa8260.33648245', 'Yougad', 'yougad@thm.com', '$2y$10$Z4Xab47a5Nvp.gmGPsz3F.scC89STfzo8lm1LelFG8DM9AcfpXc1C', 'active', '1131321', '1231231321');
+(3, 'seller66f089f4d9cff2.27285535', 'Youssef Mustafa Fawzy', 'admin@ksa.com', '$2y$10$HjUfg0dcKA76lvrUUrqD2.wMjS0xbfFHia4ATqdd0z7r1KRHTN93C', 'active', '1061953831', '356sd5f465fd6sd65f4s6f54s6f54');
 
 -- --------------------------------------------------------
 
@@ -156,7 +155,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `users_id`, `email`, `password`, `name`, `status`, `phone_number`) VALUES
-(2, 'user66f08694ef82c0.92199902', 'yomu611@gmail.com', '$2y$10$TmZNUUl83DUyvsxnvfeTjOn9.Nx.lAcn8qBtPU9Ce80.N8p2iOAFq', 'Youssef Mustafa Fawzy', 'active', '1061953831');
+(2, 'user66f08694ef82c0.92199902', 'admin@ksa.com', '$2y$10$HjUfg0dcKA76lvrUUrqD2.wMjS0xbfFHia4ATqdd0z7r1KRHTN93C', 'Youssef Mustafa Fawzy', 'active', '1061953831');
 
 --
 -- Indexes for dumped tables

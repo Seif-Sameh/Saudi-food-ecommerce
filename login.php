@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     $email = trim($data['email']);
+    $email = strtolower($email);
     $password = $data['password'];
     $role = $data['role'];
     $table_name = $role === 'admin' ? 'admins' : ($role === 'user' ? 'users' : 'sellers');
