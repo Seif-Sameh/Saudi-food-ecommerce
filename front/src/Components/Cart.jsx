@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { FiSearch } from "react-icons/fi";
 import { FaUser } from "react-icons/fa6";
 import { FiArrowLeft } from "react-icons/fi";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GoTrash } from "react-icons/go";
+import axios from 'axios';
 
 const Cart = ({ name, id }) => {
 
@@ -20,15 +21,16 @@ const Cart = ({ name, id }) => {
     console.log(cartItems)
     console.log(checkoutItems)
 
+    const navigate = useNavigate()
 
     const order = () => {
-        axios.post('http://localhost/e-commerce/place_order.php', { name, id, order: checkoutItems })
+        axios.post('http://localhost/e-commerce/place_order.php', { name: name, id: id, order: checkoutItems })
             .then((res) => (res.data))
             .then((data) => {
                 if (data.status == 'OK') {
-                    setProducts(data.products)
-                    setFilteredProducts(data.products)
-                    setFound(data.found)
+                    alert('Ordered Successfully')
+                    setCartItems([])
+                    navigate('/products', {state: { cart_items: [] }})
                 }
             })
     }
@@ -40,7 +42,16 @@ const Cart = ({ name, id }) => {
 
                 </div>
                 <div className='w-1/2 flex justify-center gap-3'>
-                    <input type='text' className='w-[250px] h-[40px] rounded-md bg-gray-200 placeholder:text-gray-500 px-3' placeholder='بحث' />
+                    <input type='text' className='w-[250px] h-[40px] rounded-md bg-gray-200 placeholder:text-gray-500 px-3' placeholder='بحث' 
+                        onChange={(e) => {
+                            if(e.target.value == ''){
+                                setCartItems(state.cart_items)
+                            }
+                            else{
+                                setCartItems(state.cart_items.filter((p) => p.name.includes(e.target.value)))
+                            }
+                        }}
+                    />
                     <button className='bg-black w-[40px] flex justify-center items-center text-white rounded-md'>
                         <FiSearch size={20} />
                     </button>
@@ -71,7 +82,7 @@ const Cart = ({ name, id }) => {
                             <p className='font-semibold'><span>{checkoutItems.reduce((accumulator, currentValue) => (accumulator + Number(currentValue.product_price) * Number(currentValue.quantity)), 0)} SAR</span></p>
                         </div>
                     </div>
-                    <button className='bg-black py-2 rounded-md text-white text-lg'>تأكيد</button>
+                    <button className='bg-black py-2 rounded-md text-white text-lg' onClick={() => {order()}}>تأكيد</button>
                 </div>
                 <div className='w-3/5 max-md:w-full py-10 pr-10 pl-8 h-full md:min-h-[60vh] bg-white rounded-t-md flex flex-col justify-between '>
                     <div className='flex flex-col mb-4'>

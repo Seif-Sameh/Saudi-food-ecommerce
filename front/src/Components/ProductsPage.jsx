@@ -47,7 +47,11 @@ const ProductsPage = ({ name, id }) => {
                     </Link>
                 </div>
                 <div className='w-1/2 flex justify-center gap-3'>
-                    <input type='text' className='w-[250px] h-[40px] rounded-md bg-gray-200 placeholder:text-gray-500 px-3' placeholder='بحث' />
+                    <input type='text' className='w-[250px] h-[40px] rounded-md bg-gray-200 placeholder:text-gray-500 px-3' placeholder='بحث' 
+                        onChange={(e) => {
+                            setFilteredProducts(products.filter((p) => p.name.includes(e.target.value)))
+                        }}
+                    />
                     <button className='bg-black w-[40px] flex justify-center items-center text-white rounded-md'>
                         <FiSearch size={20} />
                     </button>
