@@ -33,7 +33,7 @@ const ProductsPage = ({ name, id }) => {
     useEffect(() => {
         retriveProducts()
         state && setCart(state.cart_items)
-    }, [])
+    }, [name, id])
 
     return (
         <div className='w-full flex flex-col  gap-14 pt-[50px]'>

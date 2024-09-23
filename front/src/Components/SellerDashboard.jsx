@@ -44,7 +44,7 @@ const sellerDashboard = ({ name, id }) => {
   useEffect(() => {
     retriveProducts()
     fetchOrders()
-  }, [])
+  }, [name, id])
 
   return (
     <div className='w-full flex flex-col gap-14 pt-[50px]'>
@@ -90,10 +90,12 @@ const sellerDashboard = ({ name, id }) => {
       <div className='w-full bg-white rounded-t-lg p-8  pb-[50px]'>
       <table className='table-auto w-full'>
         <thead className='bg-black text-white'>
+          <tr>
           <th className='p-2 text-center'>اسم صاحب الطلب</th>
           <th className='p-2 text-center'>المنتج </th>
           <th className='p-2 text-center'>الكمية </th>
           <th className='p-2 text-center'>الإجمالي </th>
+          </tr>
         </thead>
         <tbody>
           {ordersFound && orders.map((item, index) => (

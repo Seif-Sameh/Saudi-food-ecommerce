@@ -12,8 +12,8 @@ import AdminDashboard from './Components/AdminDashboard'
 
 function App() {
   
-  const [name, setName] = useState()
-  const [id, setId] = useState()
+  const [name, setName] = useState('')
+  const [id, setId] = useState('')
 
   useEffect(() => {
     localStorage.getItem('name') && setName(localStorage.getItem('name'))
