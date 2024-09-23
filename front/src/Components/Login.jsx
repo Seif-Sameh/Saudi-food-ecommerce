@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const Login = ({setName, setId}) => {
+const Login = ({setName, setId, setPhone}) => {
     const navigate = useNavigate()
 
     const [role, setRole] = useState('user')
@@ -17,8 +17,11 @@ const Login = ({setName, setId}) => {
             if(data.status == 'OK'){
                 setName(data.name)
                 setId(data.id)
+                setPhone(data.phone_number)
+                localStorage.clear()
                 localStorage.setItem('name', data.name)
                 localStorage.setItem('id', data.id)
+                localStorage.setItem('phone', data.phone_number)
                 if(role == 'user'){
                     navigate('/products')
                 }

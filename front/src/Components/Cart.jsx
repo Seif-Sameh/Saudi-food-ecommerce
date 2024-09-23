@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { GoTrash } from "react-icons/go";
 import axios from 'axios';
 
-const Cart = ({ name, id }) => {
+const Cart = ({ name, id, phone }) => {
 
     const location = useLocation()
     const { state } = location
@@ -18,13 +18,11 @@ const Cart = ({ name, id }) => {
         setCheckoutItems(state.cart_items.map((item) => ({ product_name: item.name, product_id: item.id, product_price: item.product_price, seller_id: item.seller_id, quantity: 1 })))
     }, [])
 
-    console.log(cartItems)
-    console.log(checkoutItems)
 
     const navigate = useNavigate()
 
     const order = () => {
-        axios.post('http://localhost/e-commerce/place_order.php', { name: name, id: id, order: checkoutItems })
+        axios.post('http://localhost/e-commerce/place_order.php', { name: name, id: id, phone_number: phone, order: checkoutItems })
             .then((res) => (res.data))
             .then((data) => {
                 if (data.status == 'OK') {
