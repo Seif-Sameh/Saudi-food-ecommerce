@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+
 const sellerDashboard = () => {
 
   const retriveProducts = () => {
@@ -11,9 +12,11 @@ const sellerDashboard = () => {
         }
     })
 }
+
   useEffect(() => {
     retriveProducts()
   }, [])
+
   return (
     <div className='w-full flex flex-col gap-14 py-[50px] px-10'>
       <div className='flex justify-between'>

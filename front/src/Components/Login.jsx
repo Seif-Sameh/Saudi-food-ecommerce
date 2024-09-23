@@ -16,7 +16,7 @@ const Login = () => {
         .then((data) => {
             if(data.status == 'OK'){
                 if(role == 'user'){
-                    navigate('/products')
+                    navigate('/products', {state : {id: user_id, name: name}})
                 }
                 else if(role == 'seller'){
                     navigate('/seller')

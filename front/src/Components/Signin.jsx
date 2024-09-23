@@ -24,7 +24,7 @@ const Signin = () => {
         .then((res) => (res.data))
         .then((data) => {
             if(data.status == 'OK'){
-                navigate('/products')
+                navigate('/login')
             }
         })
     }
@@ -33,7 +33,7 @@ const Signin = () => {
         .then((res) => (res.data))
         .then((data) => {
             if(data.status == 'OK'){
-                navigate('/seller')
+                navigate('/login')
             }
         })
     }

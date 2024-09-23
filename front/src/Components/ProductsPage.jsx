@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FiSearch } from "react-icons/fi";
 import { FaUser } from "react-icons/fa6";
 import { PiBowlFoodFill } from "react-icons/pi";
@@ -6,25 +6,36 @@ import { GiCupcake } from "react-icons/gi";
 import { RiDrinksFill } from "react-icons/ri";
 import { FaCartShopping } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import image6 from '../assets/image-6.jpg'
 
 const ProductsPage = () => {
     const [category, setCategory] = useState('all')
+    const [found, setFound] = useState(false)
+    const [products, setProducts] = useState([])
+
+    const [cart, setCart] = useState([])
 
     const retriveProducts = () => {
-        axios.post('http://localhost/e-commerce/user_signup.php', {name, email, password, phone_number: phone, })
+        axios.post('http://localhost/e-commerce/retrieve_products.php', { }, {withCredentials: true} )
         .then((res) => (res.data))
         .then((data) => {
             if(data.status == 'OK'){
-                navigate('/products')
+                setProducts(data.products)
+                setFound(data.found)
             }
         })
     }
+
+    useEffect(() => {
+        retriveProducts() 
+    }, [])
 
     return (
         <div className='w-full flex flex-col  gap-14 pt-[50px]'>
             <div className='w-full px-10 flex justify-between items-center'>
                 <div className='w-1/4'>
-                <Link to={'/cart'}>
+                <Link to={'/cart'} state={{cart_items : cart}}>
                 <div className='flex w-fit items-center gap-2 bg-black text-white px-5 py-1 rounded-md'>
                     <FaCartShopping />
                     <button >السلة</button>
@@ -64,18 +75,24 @@ const ProductsPage = () => {
                 </div>
                 <div className='w-full bg-white rounded-t-lg p-8'>
                     <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 gap-4'>
-                        <div className='p-2 h-[300px] flex flex-col'>  
-                            <div className='w-full h-3/5'>
-                                <img src="" alt="" className='w-full h-full rounded-lg'/>
-                            </div>
-                            <div className='w-full h-2/5 flex flex-col justify-between '>
-                            <div className='flex flex-col gap-1'>
-                                <p className='text-lg font-semibold'>name</p>
-                                <p className='text-sm '>description</p>
-                            </div>
-                                <button className='bg-black text-white py-1 px-3 rounded-md w-fit cursor-pointer'>اضف الي سلتك</button>
-                            </div>
-                        </div>
+                        
+                        {
+                            products.map((item) => (
+                                <div key={item.id} className='p-2 h-[300px] flex flex-col'>  
+                                    <div className='w-full h-3/5'>
+                                        <img src={image6} alt="" className='w-full h-full rounded-lg'/>
+                                    </div>
+                                    <div className='w-full h-2/5 flex flex-col justify-between '>
+                                    <div className='flex flex-col gap-1'>
+                                        <p className='text-lg font-semibold'>{item.name}</p>
+                                        <p className='text-sm '>{item.description}</p>
+                                    </div>
+                                        <button className='bg-black text-white py-1 px-3 rounded-md w-fit cursor-pointer'>اضف الي سلتك</button>
+                                    </div>
+                                </div>
+                            ))
+                        }
+
                     </div>
                 </div>
             </div>

@@ -20,7 +20,7 @@ const AddProduct = () => {
             headers: {
               "Content-Type": 'multipart/form-data'
             }, 
-            withCredentials: true
+            withCredentials: true,
         })
         .then((res) => (res.data))
         .then((data) => {

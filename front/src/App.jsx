@@ -8,8 +8,10 @@ import Landing from './Components/Landing'
 import Cart from './Components/Cart'
 import SellerDashboard from './Components/SellerDashboard'
 import AddProduct from './Components/AddProduct'
+import AdminDashboard from './Components/AdminDashboard'
 
 function App() {
+
 
   return (
     <> 
@@ -20,6 +22,7 @@ function App() {
         <Route index element={<Landing/>}/>
         <Route path='/products' element={<ProductsPage/>}/>
         <Route path='/seller' element={<SellerDashboard/>}/>
+        <Route path='/admin' element={<AdminDashboard/>}/>
         <Route path='/add_product' element={<AddProduct/>}/>
         <Route path='/cart' element={<Cart/>}/>
       </Route>
