@@ -16,10 +16,10 @@ const Login = () => {
         .then((data) => {
             if(data.status == 'OK'){
                 if(role == 'user'){
-                    navigate('/products', {state : {id: user_id, name: name}})
+                    navigate('/products', {state : {id: data.id, name: data.name}})
                 }
                 else if(role == 'seller'){
-                    navigate('/seller')
+                    navigate('/seller', {state : {id: data.id, name: data.name}})
                 }
                 else if(role == 'admin'){
                     navigate('/admin')

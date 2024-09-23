@@ -5,11 +5,14 @@ import { PiBowlFoodFill } from "react-icons/pi";
 import { GiCupcake } from "react-icons/gi";
 import { RiDrinksFill } from "react-icons/ri";
 import { FaCartShopping } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import image6 from '../assets/image-6.jpg'
 
 const ProductsPage = () => {
+    const location = useLocation()
+    const {state} = location
+
     const [category, setCategory] = useState('all')
     const [found, setFound] = useState(false)
     const [products, setProducts] = useState([])
@@ -50,7 +53,7 @@ const ProductsPage = () => {
                 </div>
                 <div className='w-1/4 flex flex-row-reverse items-center gap-3'>
                     <FaUser size={20} />
-                    <span className='text-lg'>name</span>
+                    <span className='text-lg'>{state && state.name}</span>
                 </div>
             </div>
 
