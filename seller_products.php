@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $description = $rtl;
         }
         $image_path = 'http://localhost/e-commerce/' . $image_path;
-        $products[] = array("id" => $id, "name" => $name, "category" => $category, "description" => $description, "image_path" => $imge_path, "product_price" => $price);
+        $products[] = array("id" => $id, "name" => $name, "category" => $category, "description" => $description, "image_path" => $image_path, "product_price" => $price);
     }
     http_response_code(200);
     echo json_encode(['status' => 'OK', 'found' => true, 'products' => $products]);
