@@ -96,7 +96,6 @@ const ProductsPage = ({ name, id }) => {
                 </div> */}
                 <div className='w-full bg-white rounded-t-lg p-8 min-h-[60vh]'>
                     <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-sm:grid-cols-1 gap-4'>
-
                         {
                             found && filteredProducts.map((item) => (
                                 <div key={item.id} className='p-2 flex flex-col gap-4'>
