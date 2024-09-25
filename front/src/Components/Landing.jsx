@@ -11,11 +11,14 @@ const Landing = () => {
         <div className='bg-white w-full min-h-screen flex flex-col'>
             <div className='w-full h-screen relative'>
                 <img src={image1} alt="" className='w-full h-full object-cover' />
-                <div className='bg-black w-full h-full absolute left-0 top-0 bg-opacity-60 flex flex-col items-center justify-center px-5 gap-10'>
+                <div className='bg-black w-full h-full absolute left-0 top-0 bg-opacity-60 flex flex-col items-center justify-center px-5 gap-16'>
                     <h1 className='text-white text-[60px] font-bold text-center max-md:text-[40px]'>صنع بأيدى سعودية</h1>
                     <div className='flex gap-4'>
+                        <Link to={'/login'}>
+                            <button className='bg-black text-xl text-white px-4 py-3 rounded-md cursor-pointer'>تسجيل دخول</button>
+                        </Link>
                         <Link to={'/signin'}>
-                            <button className='bg-black text-lg text-white px-4 py-3 rounded-md cursor-pointer'>انضم الآن</button>
+                            <button className='bg-black text-xl text-white px-4 py-3 rounded-md cursor-pointer'>انشاء حساب</button>
                         </Link>
                     </div>
                 </div>
