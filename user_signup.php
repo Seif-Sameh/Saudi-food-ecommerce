@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     $phone_number = trim($data['phone_number']);
     $email = trim($data['email']);
+    $email = strtolower($email);
     $name = trim($data['name']);
     $name = ucwords($name);
     $password = $data['password'];

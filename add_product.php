@@ -45,8 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $seller_name = $_POST['name'];
     include('./connection.php');
     $add_product = $conn->prepare("INSERT INTO products (product_id, category, product_name, product_description, image_path, seller_id,
-    seller_name) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $add_product->bind_param('sssssss', $product_id, $category, $product_name, $product_description, $image_path, $seller_id, $seller_name);
+    seller_name, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $add_product->bind_param('ssssssss', $product_id, $category, $product_name, $product_description, $image_path, $seller_id, $seller_name, $_POST['price']);
     if (!$add_product->execute()) {
         http_response_code(500);
         echo json_encode(['status' => 'error', 'message' => 'database error']);
