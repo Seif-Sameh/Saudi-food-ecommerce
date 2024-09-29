@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $login->fetch();
             $login->close();
             if (password_verify($password, $hashed_password)) {
-                session_regenerate_id(true);
                 $_SESSION['id'] = $id;
                 $_SESSION['role'] = $role;
                 setcookie('PHPSESSID', session_id(), 0, "/", "", true, true);
